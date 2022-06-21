@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 	pthread_create(&t[0], NULL, Thread1, NULL);
 	pthread_create(&t[1], NULL, Thread2, NULL);
 	printf("Test\n");
+	printf("Test git\n");
 	pthread_join(t[0], NULL);
 	pthread_join(t[1], NULL);
 	return (0);
