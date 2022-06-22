@@ -20,29 +20,40 @@ void	philo_sleep(t_philo *philo, t_data *all_data)
 
 void	philo_eat(t_philo *philo, t_data *all_data)
 {
-	pthread_mutex_lock(&philo->l_fork);
+	pthread_mutex_lock(philo->r_fork);
 	if (philo->state == DIED)
 		return ;
 	philo_print(all_data, philo->id, "has taken a fork");
 
-	pthread_mutex_lock(&philo->r_fork);
+	pthread_mutex_lock(philo->l_fork);
 	if (philo->state == DIED)
 		return ;
 	philo_print(all_data, philo->id, "has taken a fork");
 
 	philo->last_eat = get_time();
+	philo->state = EATING;
 	if (philo->state == DIED)
 		return ;
 	philo_print(all_data, philo->id, "is eating");
 	philo->time_eat++;
-	philo->state = EATING;
 	while (get_time() < philo->last_eat + all_data->input_param.time_to_eat)
 		usleep(330);
-	pthread_mutex_unlock(&philo->l_fork);
-	pthread_mutex_unlock(&philo->r_fork);
+
+	///
+//	printf("Philo %d last eat first %lu\n", philo->id, philo->last_eat - all_data->start_time);
+	philo->last_eat = get_time();
+	philo->state = STARTED;
+	///
+
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(philo->r_fork);
+
 
 	if (philo->time_eat == all_data->input_param.philo_must_eat)
+	{
+		printf("************ kill inside ***********\n");
 		kill_all(all_data);
+	}
 }
 
 void	philo_think(t_philo *philo, t_data *all_data)
@@ -63,10 +74,16 @@ void	*thread_philo(void *param)
 	philo->state = STARTED;
 
 	all_data = philo->all_data;
-	if (all_data->input_param.count % 2 && all_data->input_param.count != 1
+
+	if (all_data->input_param.count == 1)
+	{
+		philo_eat(philo, all_data);
+	}
+	else if (all_data->input_param.count % 2 && all_data->input_param.count != 1
 		&& philo->id + 1 == all_data->input_param.count)
 		philo_think(philo, all_data);
-	else if (!(philo->id % 2))
+//	else if (!(philo->id % 2))
+	else if (philo->id % 2)
 	{
 		philo_sleep(philo, all_data);
 		philo_think(philo, all_data);
@@ -96,7 +113,7 @@ int	start_philo(t_data	*all_data)
 	while (i < all_data->input_param.count)
 	{
 		if (pthread_create(&all_data->pthread_list[i], NULL,
-						   thread_philo, &all_data->pthread_list[i]) != 0)
+						   thread_philo, &all_data->philo_list[i]) != 0)
 			return (0);
 		pthread_detach(all_data->pthread_list[i]);
 		i++;

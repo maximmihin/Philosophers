@@ -25,14 +25,15 @@ typedef struct s_philo
 	int 			time_eat;
 	unsigned long	last_eat;
 	pthread_t		*philos_thread;
-	pthread_mutex_t	r_fork;
-	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 	void			*all_data;
 }	t_philo;
 
 typedef struct s_data
 {
 	pthread_t		*pthread_list;
+	pthread_t 		monitor_thread;
 	pthread_mutex_t	*forks_list;
 	t_philo			*philo_list;
 	t_param			input_param;
@@ -44,19 +45,16 @@ enum
 {
 	NOT_STARTED = 0,
 	STARTED = 1,
-	TAKE_L_FORK = 2,
-	TAKE_F_FORK = 3,
-	EATING = 4,
-	SLEEPING = 5,
-	THINKING = 6,
+	EATING = 2,
 	DIED = 7
 };
 
-t_param	init_input(int argc, char **argv);
-int	init_philo_struct(t_data *all_data);
-int 	start_monitor(t_data *all_data);
-int		start_philo(t_data	*all_data);
+t_param			init_input(int argc, char **argv);
+int				init_philo_struct(t_data *all_data);
+int			 	start_monitor(t_data *all_data);
+int				start_philo(t_data	*all_data);
 unsigned long	get_time(void);
-void	kill_all(t_data *all_data);
+void			philo_print(t_data *all_data, int id, char *msg);
+void			kill_all(t_data *all_data);
 
 #endif //PHILOSOPHERS_H

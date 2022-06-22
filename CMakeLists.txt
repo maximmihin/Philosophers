@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
-project(philo C)
+project(Philosophers C)
 
 set(CMAKE_C_STANDARD 11)
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -O2")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
 
 include_directories(philo/include)
 
@@ -16,4 +17,6 @@ add_executable(philo
 		philo/src/start_philo.c
 		philo/src/init_philo_struct.c
 		philo/src/start_monitor.c
-		philo/src/utils.c)
+		philo/src/utils.c
+		)
+

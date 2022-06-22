@@ -47,13 +47,13 @@ int	main(int argc, char **argv)
 		return (error("Error : Failed to init philo_struct\n"));
 
 	if (!(start_monitor(all_data)))
-		return (error("Error : Failed start monitor\n"));
+		return (error("Error : Failed start monitor_thread\n"));
 
 	if (!(start_philo(all_data)))
 		return (error("Error : Failed to start threads\n"));
 
 
-
+	pthread_join(all_data->monitor_thread, NULL);
 
 //	pthread_mutex_init(&lock_a, 0);
 

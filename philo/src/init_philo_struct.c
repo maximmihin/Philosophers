@@ -22,14 +22,15 @@ int	init_philo_struct(t_data *all_data)
 	i = 0;
 	while (i < all_data->input_param.count)
 	{
-		all_data->philo_list[i].r_fork = all_data->forks_list[i];
-		if (i != all_data->input_param.count)
-			all_data->philo_list[i].l_fork = all_data->forks_list[i + 1];
+		all_data->philo_list[i].r_fork = &all_data->forks_list[i];
+		if (i != all_data->input_param.count - 1)
+			all_data->philo_list[i].l_fork = &all_data->forks_list[i + 1];
 		else
-			all_data->philo_list[i].l_fork = all_data->forks_list[0];
+			all_data->philo_list[i].l_fork = &all_data->forks_list[0];
 		all_data->philo_list[i].id = i;
 		all_data->philo_list[i].state = NOT_STARTED;
 		all_data->philo_list[i].time_eat = 0;
+//		all_data->philo_list[i].last_eat = 0;
 		all_data->philo_list[i].all_data = all_data;
 		i++;
 	}
