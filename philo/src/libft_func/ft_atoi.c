@@ -1,5 +1,3 @@
-#include "../include/philosophers.h"
-
 int	ft_atoi(const char *str)
 {
 	unsigned int	num;
@@ -8,7 +6,7 @@ int	ft_atoi(const char *str)
 	minus = 1;
 	num = 0;
 	while (*str == '\t' || *str == '\n' || *str == '\v'
-		   || *str == '\f' || *str == '\r' || *str == ' ')
+		|| *str == '\f' || *str == '\r' || *str == ' ')
 		str++;
 	if (*str == '-' || *str == '+')
 	{

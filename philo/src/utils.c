@@ -2,7 +2,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 
-int ft_strlen(char *str);
+int	ft_strlen(char *str);
 
 int	error(char *str)
 {

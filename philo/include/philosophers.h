@@ -4,10 +4,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-/// to del
-#include <stdio.h>
-
+# include <stdio.h>
 
 typedef struct s_param
 {
@@ -24,9 +21,10 @@ typedef struct s_philo
 	int 			state;
 	int 			time_eat;
 	unsigned long	last_eat;
-	pthread_t		*philos_thread;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	pthread_mutex_t *check_hunger;
+//	pthread_mutex_t *dead_check;
 	void			*all_data;
 }	t_philo;
 
@@ -35,26 +33,28 @@ typedef struct s_data
 	pthread_t		*pthread_list;
 	pthread_t 		monitor_thread;
 	pthread_mutex_t	*forks_list;
+	pthread_mutex_t	*chats_list;
+	pthread_mutex_t	*dead_checker;
 	t_philo			*philo_list;
 	t_param			input_param;
 	pthread_mutex_t	print_fork;
+	pthread_mutex_t	dead_man_check;
 	unsigned long	start_time;
+	int 			dead_man;
 }	t_data;
 
 enum
 {
 	NOT_STARTED = 0,
 	STARTED = 1,
-	EATING = 2,
-	DIED = 7
 };
 
 t_param			init_input(int argc, char **argv);
-int				init_philo_struct(t_data *all_data);
-int			 	start_monitor(t_data *all_data);
+int				init_all_data(t_data *all_data);
+void			*monitor(void	*param);
 int				start_philo(t_data	*all_data);
 unsigned long	get_time(void);
 void			philo_print(t_data *all_data, int id, char *msg);
-void			kill_all(t_data *all_data);
+int				error(char *str);
 
 #endif //PHILOSOPHERS_H

@@ -5,7 +5,7 @@ char	*ft_itoa(int n);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
-int is_positive_num(int num_int, char *num_str)
+int	is_positive_num(int num_int, char *num_str)
 {
 	char	*tmp_str;
 	size_t	len[2];
