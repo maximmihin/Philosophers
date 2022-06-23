@@ -51,7 +51,7 @@ void	philo_eat(t_philo *philo, t_data *all_data)
 		&& philo->time_eat == all_data->input_param.philo_must_eat)
 	{
 		pthread_mutex_lock(&all_data->dead_man_check);
-		all_data->dead_man = 2;
+		all_data->must_eat_counter += 1;
 		pthread_mutex_unlock(&all_data->dead_man_check);
 	}
 	pthread_mutex_unlock(philo->l_fork);

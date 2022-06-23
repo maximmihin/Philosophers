@@ -8,13 +8,8 @@ int	check_stop(t_data *all_data)
 
 	on = 1;
 	pthread_mutex_lock(&all_data->dead_man_check);
-	if (all_data->dead_man == 2)
-	{
+	if (all_data->must_eat_counter == all_data->input_param.count)
 		on = 0;
-		pthread_mutex_lock(&all_data->print_fork);
-		printf("STOP\n");
-		pthread_mutex_unlock(&all_data->print_fork);
-	}
 	pthread_mutex_unlock(&all_data->dead_man_check);
 	return (on);
 }

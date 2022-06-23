@@ -68,6 +68,7 @@ int	init_all_data(t_data *all_data)
 		return (0);
 	all_data->start_time = get_time();
 	all_data->dead_man = 0;
+	all_data->must_eat_counter = 0;
 	i = 0;
 	while (i < all_data->input_param.count)
 	{

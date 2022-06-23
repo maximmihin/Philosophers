@@ -41,6 +41,7 @@ typedef struct s_data
 	pthread_mutex_t	dead_man_check;
 	unsigned long	start_time;
 	int 			dead_man;
+	int 			must_eat_counter;
 }	t_data;
 
 enum
