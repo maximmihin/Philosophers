@@ -1,4 +1,4 @@
-#include "../include/philosophers.h"
+#include "../include/philo.h"
 
 int		is_some_dead(t_philo *philo);
 void	philo_eat(t_philo *philo, t_data *all_data);
@@ -13,13 +13,11 @@ void	philo_think(t_philo *philo, t_data *all_data)
 
 void	first_move(t_data *all_data, t_philo *philo)
 {
-	if (philo->id % 2)
+	if (philo->id == 0 || philo->id % 2 == 0)
 	{
-		philo_sleep(philo, all_data);
 		philo_think(philo, all_data);
+		usleep(all_data->input_param.time_to_eat / 2 * 1000);
 	}
-	else if (philo->id + 1 == all_data->input_param.count)
-		philo_think(philo, all_data);
 }
 
 void	*thread_philo(void *param)
@@ -46,8 +44,6 @@ void	*thread_philo(void *param)
 		if (is_some_dead(philo))
 			break ;
 	}
-	pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->r_fork);
 	return (NULL);
 }
 
@@ -61,7 +57,6 @@ int	start_philo(t_data	*all_data)
 		if (pthread_create(&all_data->pthread_list[i], NULL,
 				thread_philo, &all_data->philo_list[i]) != 0)
 			return (0);
-		pthread_detach(all_data->pthread_list[i]);
 		i++;
 	}
 	return (1);

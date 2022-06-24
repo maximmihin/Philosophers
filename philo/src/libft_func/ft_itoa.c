@@ -1,4 +1,4 @@
-#include "../include/philosophers.h"
+#include "../../include/philo.h"
 
 int	nbrlen(int nbr)
 {

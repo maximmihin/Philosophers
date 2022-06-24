@@ -1,4 +1,4 @@
-#include "../include/philosophers.h"
+#include "../include/philo.h"
 
 void			philo_print(t_data *all_data, int id, char *msg);
 
@@ -9,7 +9,10 @@ int	check_stop(t_data *all_data)
 	on = 1;
 	pthread_mutex_lock(&all_data->dead_man_check);
 	if (all_data->must_eat_counter == all_data->input_param.count)
+	{
+		all_data->dead_man = 1;
 		on = 0;
+	}
 	pthread_mutex_unlock(&all_data->dead_man_check);
 	return (on);
 }

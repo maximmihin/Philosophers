@@ -1,4 +1,4 @@
-#include "../include/philosophers.h"
+#include "../include/philo.h"
 
 int	init_pthread_struct(t_data *all_data)
 {

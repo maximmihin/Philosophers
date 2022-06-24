@@ -1,4 +1,4 @@
-#include "philosophers.h"
+#include "../include/philo.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,6 +18,12 @@ int	main(int argc, char **argv)
 		return (error("Error : Failed start monitor_thread\n"));
 	if (!(start_philo(all_data)))
 		return (error("Error : Failed to start threads\n"));
-	pthread_join(all_data->monitor_thread, NULL);
+	if (pthread_join(all_data->monitor_thread, NULL))
+		return (error("Error : Failed join monitor thread\n"));
+	if (!join_philo_thread(all_data))
+		return (error("Error : Failed join philo threads\n"));
+	if (!destroy_mutexes(all_data))
+		return (error("Error : Failed destroy mutexes\n"));
+	free_all_data(&all_data);
 	return (0);
 }

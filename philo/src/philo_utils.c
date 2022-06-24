@@ -1,4 +1,4 @@
-#include "../include/philosophers.h"
+#include "../include/philo.h"
 
 void	philo_print(t_data *all_data, int id, char *msg)
 {
@@ -25,11 +25,18 @@ int	take_fork(t_philo *philo, t_data *all_data)
 {
 	pthread_mutex_lock(philo->r_fork);
 	if (is_some_dead(philo))
+	{
+		pthread_mutex_unlock(philo->r_fork);
 		return (0);
+	}
 	philo_print(all_data, philo->id, "has taken a fork");
 	pthread_mutex_lock(philo->l_fork);
 	if (is_some_dead(philo))
+	{
+		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(philo->r_fork);
 		return (0);
+	}
 	philo_print(all_data, philo->id, "has taken a fork");
 	return (1);
 }
@@ -42,7 +49,11 @@ void	philo_eat(t_philo *philo, t_data *all_data)
 	philo->last_eat = get_time();
 	pthread_mutex_unlock(philo->check_hunger);
 	if (is_some_dead(philo))
+	{
+		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(philo->r_fork);
 		return ;
+	}
 	philo_print(all_data, philo->id, "is eating");
 	philo->time_eat++;
 	while (get_time() < philo->last_eat + all_data->input_param.time_to_eat)
