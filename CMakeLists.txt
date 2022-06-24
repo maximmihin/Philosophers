@@ -24,9 +24,14 @@ add_executable(philo
 		)
 
 add_executable(philo_bonus
+		philo_bonus/src/libft_func/ft_atoi.c
+		philo_bonus/src/libft_func/ft_itoa.c
+		philo_bonus/src/libft_func/ft_strlen.c
+		philo_bonus/src/libft_func/ft_strncmp.c
 		philo_bonus/src/main.c
+		philo_bonus/src/parse_arg.c
 		philo_bonus/include/philo_bonus.h
-		philo_bonus/src/utils.c)
+		philo_bonus/src/utils.c philo_bonus/src/init_philo_struct.c)
 
 target_include_directories(philo PRIVATE philo/include)
 target_include_directories(philo_bonus PRIVATE philo_bonus/include)
