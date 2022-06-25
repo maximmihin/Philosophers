@@ -1,4 +1,4 @@
-#include "../include/philo.h"
+#include "../include/philo_bonus.h"
 
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);

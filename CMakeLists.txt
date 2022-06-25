@@ -30,8 +30,9 @@ add_executable(philo_bonus
 		philo_bonus/src/libft_func/ft_strncmp.c
 		philo_bonus/src/main.c
 		philo_bonus/src/parse_arg.c
-		philo_bonus/include/philo_bonus.h
-		philo_bonus/src/utils.c philo_bonus/src/init_philo_struct.c)
+		philo_bonus/src/utils.c
+		philo_bonus/src/init_philo_struct.c
+		philo_bonus/src/start_philo.c philo_bonus/src/philo_utils.c philo_bonus/src/monitor.c philo_bonus/src/init_all_data.c philo_bonus/src/libft_func/ft_strjoin.c)
 
 target_include_directories(philo PRIVATE philo/include)
 target_include_directories(philo_bonus PRIVATE philo_bonus/include)

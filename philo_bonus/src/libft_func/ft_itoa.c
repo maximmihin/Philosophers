@@ -1,4 +1,4 @@
-#include "../../include/philo.h"
+#include "../../include/philo_bonus.h"
 
 int	nbrlen(int nbr)
 {
