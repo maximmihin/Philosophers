@@ -12,7 +12,7 @@
 
 #include "../include/philo_bonus.h"
 
-t_philo *init_philo_struct(int id, t_data *all_data)
+t_philo	*init_philo_struct(int id, t_data *all_data)
 {
 	t_philo	*philo;
 

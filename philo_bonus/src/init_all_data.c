@@ -14,18 +14,14 @@
 
 int	init_general_semaphores(t_data *all_data)
 {
-	///
 	sem_unlink("/philo_forks");
 	sem_unlink("/philo_print");
 	sem_unlink("/philo_philo_must_eat");
-	///
-
-
 	all_data->sem_forks = sem_open("/philo_forks",
 			O_CREAT | O_EXCL, 0644, all_data->input_param.count);
 	if (all_data->input_param.philo_must_eat != -1)
 		all_data->sem_philo_must_eat = sem_open("/philo_philo_must_eat",
-			O_CREAT | O_EXCL, 666, 0);
+				O_CREAT | O_EXCL, 666, 0);
 	else
 		all_data->sem_philo_must_eat = NULL;
 	all_data->sem_print = sem_open("/philo_print",
@@ -36,12 +32,12 @@ int	init_general_semaphores(t_data *all_data)
 	return (1);
 }
 
-int init_child_sem_name(t_data *all_data)
+int	init_child_sem_name(t_data *all_data)
 {
 	char	**names;
-	char 	*str_tmp;
-	int 	id;
-	int 	num_philo;
+	char	*str_tmp;
+	int		id;
+	int		num_philo;
 
 	num_philo = all_data->input_param.count;
 	names = (char **) malloc(sizeof(char *) * num_philo);
@@ -59,11 +55,12 @@ int init_child_sem_name(t_data *all_data)
 	return (1);
 }
 
-t_data *init_all_data(int argc, char **argv)
+t_data	*init_all_data(int argc, char **argv)
 {
 	t_data	*all_data;
 
-	if (!(all_data = (t_data *) malloc(sizeof(t_data))))
+	all_data = (t_data *) malloc(sizeof(t_data));
+	if (!all_data)
 		return (NULL);
 	all_data->input_param = init_input(argc, argv);
 	if (!all_data->input_param.count)
@@ -79,4 +76,3 @@ t_data *init_all_data(int argc, char **argv)
 		return (NULL);
 	return (all_data);
 }
-

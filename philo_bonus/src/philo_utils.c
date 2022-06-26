@@ -27,20 +27,14 @@ void	philo_eat(t_philo *philo, t_param input_param)
 	sem_wait(philo->sem_forks);
 	sem_wait(philo->sem_forks);
 	philo_print(philo, "is eating");
-
-	///
 	sem_wait(philo->sem_eat_update);
 	philo->last_eat = get_time();
 	philo->time_eat++;
 	sem_post(philo->sem_eat_update);
-	///
-
 	while (get_time() < philo->last_eat + input_param.time_to_eat)
 		usleep(330);
-
 	if (philo->time_eat == input_param.philo_must_eat)
 		sem_post(philo->sem_philo_must_eat);
-
 	sem_post(philo->sem_forks);
 	sem_post(philo->sem_forks);
 }

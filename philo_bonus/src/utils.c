@@ -37,9 +37,21 @@ unsigned long	get_time(void)
 	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }
 
+void	ft_kill(t_data *all_data)
+{
+	int	i;
+
+	i = 0;
+	while (i < all_data->input_param.count)
+	{
+		kill(all_data->philo_pids[i], SIGKILL);
+		i++;
+	}
+}
+
 void	destroy_semaphores(t_data *all_data)
 {
-	int i;
+	int	i;
 
 	sem_close(all_data->sem_forks);
 	sem_unlink("/philo_forks");

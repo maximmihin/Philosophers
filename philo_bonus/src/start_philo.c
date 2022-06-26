@@ -15,7 +15,6 @@
 void	philo_sleep(t_philo *philo, t_param input_param);
 void	philo_eat(t_philo *philo, t_param input_param);
 
-
 void	first_move(t_philo *philo, t_param input_param)
 {
 	if (philo->id == 0 || philo->id % 2 == 0)
@@ -25,7 +24,7 @@ void	first_move(t_philo *philo, t_param input_param)
 	}
 }
 
-int start_philo(int id, t_data *all_data)
+int	start_philo(int id, t_data *all_data)
 {
 	pthread_t	monitor_thread;
 	t_philo		*philo;

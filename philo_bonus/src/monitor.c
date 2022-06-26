@@ -40,14 +40,13 @@ void	*monitor_limit(void *data)
 	int		i;
 
 	all_data = (t_data *)data;
-	limit = all_data->input_param.philo_must_eat;
+	limit = all_data->input_param.count;
 	i = 0;
 	while (i < limit)
 	{
 		sem_wait(all_data->sem_philo_must_eat);
 		i++;
 	}
-	printf("STOP\n");
-	kill(-1, SIGQUIT);
+	ft_kill(all_data);
 	return (NULL);
 }
