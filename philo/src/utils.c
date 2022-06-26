@@ -54,24 +54,18 @@ int	join_philo_thread(t_data *all_data)
 	return (1);
 }
 
-int	destroy_mutexes(t_data *all_data)
+void destroy_mutexes(t_data *all_data)
 {
 	int	i;
 
 	i = 0;
 	while (i < all_data->input_param.count)
 	{
-		if (pthread_mutex_destroy(&all_data->forks_list[i]))
-			return (0);
-		if (pthread_mutex_destroy(&all_data->chats_list[i]))
-			return (0);
-		if (pthread_mutex_destroy(&all_data->dead_checker[i]))
-			return (0);
+		pthread_mutex_destroy(&all_data->forks_list[i]);
+		pthread_mutex_destroy(&all_data->chats_list[i]);
+		pthread_mutex_destroy(&all_data->dead_checker[i]);
 		i++;
 	}
-	if (pthread_mutex_destroy(&all_data->print_fork))
-		return (0);
-	if (pthread_mutex_destroy(&all_data->dead_man_check))
-		return (0);
-	return (1);
+	pthread_mutex_destroy(&all_data->print_fork);
+	pthread_mutex_destroy(&all_data->dead_man_check);
 }

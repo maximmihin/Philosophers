@@ -34,8 +34,7 @@ int	main(int argc, char **argv)
 		return (error("Error : Failed join monitor thread\n"));
 	if (!join_philo_thread(all_data))
 		return (error("Error : Failed join philo threads\n"));
-	if (!destroy_mutexes(all_data))
-		return (error("Error : Failed destroy mutexes\n"));
+	destroy_mutexes(all_data);
 	free_all_data(&all_data);
 	return (0);
 }

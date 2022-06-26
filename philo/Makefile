@@ -1,6 +1,6 @@
 NAME = philo
 
-HEADER = include/philosophers.h
+HEADER = include/philo.h
 
 CC = cc
 
@@ -13,7 +13,7 @@ SRC = src/libft_func/ft_atoi.c \
 			src/init_philo_struct.c \
 			src/monitor.c \
 			src/parse_arg.c \
-			src/philo.c \
+			src/main.c \
 			src/philo_utils.c \
 			src/start_philo.c \
 			src/utils.c
@@ -25,10 +25,10 @@ OBJ = $(SRC:%.c= %.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
-	$(CC) $(OBJ) -O2 -o $(NAME)
+	$(CC) $(OBJ) -lpthread -O2 -o $(NAME)
 
 %.o	: %.c $(HEADER)
-	@$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean	:
 	@rm -f $(OBJ)

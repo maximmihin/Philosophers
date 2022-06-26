@@ -68,8 +68,8 @@ int				start_philo(t_data	*all_data);
 unsigned long	get_time(void);
 void			philo_print(t_data *all_data, int id, char *msg);
 int				error(char *str);
-int				destroy_mutexes(t_data *all_data);
+void destroy_mutexes(t_data *all_data);
 int				join_philo_thread(t_data *all_data);
-void			free_all_data(t_data **all_data);
+void free_all_data(t_data **all_data);
 
 #endif //PHILO_H
