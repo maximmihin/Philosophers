@@ -54,7 +54,7 @@ int	join_philo_thread(t_data *all_data)
 	return (1);
 }
 
-void destroy_mutexes(t_data *all_data)
+void	destroy_mutexes(t_data *all_data)
 {
 	int	i;
 

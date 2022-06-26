@@ -45,7 +45,7 @@ int	take_fork(t_philo *philo, t_data *all_data)
 	if (all_data->input_param.count == 1)
 	{
 		while (get_time() < philo->last_eat
-				+ all_data->input_param.time_to_die + 1)
+			+ all_data->input_param.time_to_die + 1)
 			usleep(330);
 		return (0);
 	}
