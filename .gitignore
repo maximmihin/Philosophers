@@ -53,5 +53,8 @@ dkms.conf
 
 cmake-build-debug
 cmake-build-release
+cmake-build-debug-remote-deb-va-d3-1
+cmake-build-release-remote-deb-va-d3-1
+
 .idea
 
