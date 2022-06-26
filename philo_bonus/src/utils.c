@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gradagas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/26 02:49:03 by gradagas          #+#    #+#             */
+/*   Updated: 2022/06/26 02:49:06 by gradagas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo_bonus.h"
 #include <sys/time.h>
 #include <stdio.h>
@@ -35,6 +47,12 @@ void	destroy_semaphores(t_data *all_data)
 	sem_unlink("/philo_print");
 	if (all_data->input_param.philo_must_eat != -1)
 	{
+		i = 0;
+		while (i < all_data->input_param.count)
+		{
+			sem_post(all_data->sem_philo_must_eat);
+			i++;
+		}
 		sem_close(all_data->sem_philo_must_eat);
 		sem_unlink("/philo_philo_must_eat");
 	}

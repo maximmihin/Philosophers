@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gradagas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/26 02:46:51 by gradagas          #+#    #+#             */
+/*   Updated: 2022/06/26 02:46:53 by gradagas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo_bonus.h"
 
 int	main(int argc, char **argv)
@@ -33,10 +45,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	waitpid(-1, NULL, 0);
-	printf("444\n");
-	kill(-1, 0);
-	printf("555\n");
+	kill(-1, SIGQUIT);
 	destroy_semaphores(all_data);
-	printf("666\n");
 	exit(0);
 }
